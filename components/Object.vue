@@ -61,6 +61,11 @@
         <el-form-item label="Текст кнопки 2">
           <el-input v-model="form.buttonText2"></el-input>
         </el-form-item>
+        <el-form-item
+          label="Цвет кнопки"
+        >
+          <el-color-picker v-model="form.buttonColor"></el-color-picker>
+        </el-form-item>
         <h3 class="h3 mb-4">QR code</h3>
         <el-form-item label="Zapper Ссылка">
           <el-input v-model="form.link"></el-input>
@@ -113,14 +118,15 @@ export default {
         backgroundType: 'color',
         color: '#ffffff',
         notUseLogo: false,
+        buttonColor: '#0069ff',
         buttonText1: '',
         buttonText2: ''
       },
       generatedQr: false,
       backgroundFileUrl: '',
-      logoUrl: '',
+      logoUrl: null,
       generatedLink: 'some-link',
-      key: undefined
+      key: null
     }
   },
   computed: {
@@ -138,6 +144,7 @@ export default {
           this.form.notUseLogo = this.editData.NotUseLogo
           this.form.buttonText1 = this.editData.ButtonText1
           this.form.buttonText2 = this.editData.ButtonText2
+          this.form.buttonColor = this.editData.ButtonColor
           this.backgroundFileUrl = this.editData.BackgroundFileUrl
           this.logoUrl = this.editData.LogoUrl
           this.generatedQr = true
@@ -193,6 +200,7 @@ export default {
         LogoUrl: this.logoUrl ?? 'https://firebasestorage.googleapis.com/v0/b/zapper-mask.appspot.com/o/default.jpeg?alt=media&token=4f7b6f42-d304-4f83-b36b-23997c8eeb79',
         ButtonText1: this.form.buttonText1,
         ButtonText2: this.form.buttonText2,
+        ButtonColor: this.form.buttonColor,
         Date: new Date().toISOString().slice(0, 10)
       })
       this.$router.push('/admin')

@@ -21,11 +21,11 @@
         </div>
         <div class="zee-splash-small-flex-space"></div>
         <div id="lunch">
-          <button id="zee-launch-button" style="">
-            <span id="zee-launch-button-text">{{ object.ButtonText2 }}</span
+          <button id="zee-launch-button" :style="buttonStyle">
+            <span id="zee-launch-button-text" :style="{ color: object.ButtonColor }">{{ object.ButtonText2 }}</span
             ><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 11 12">
               <path
-                fill="#fff"
+                :fill="object.ButtonColor"
                 fill-rule="evenodd"
                 d="M.166 0L10.56 6 .166 12z"
               ></path>
@@ -109,11 +109,12 @@
           />
         </div>
         <div class="zee-splash-small-flex-space"></div>
-        <button id="zee-launch-button" style="">
-          <span id="zee-launch-button-text">{{ object.ButtonText1 }}</span
-          ><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 11 12">
+        <button id="zee-launch-button" :style="buttonStyle">
+          <span id="zee-launch-button-text" :style="{ color: object.ButtonColor }">{{ object.ButtonText1 }}</span
+          >
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 11 12">
             <path
-              fill="#fff"
+              :fill="object.ButtonColor"
               fill-rule="evenodd"
               d="M.166 0L10.56 6 .166 12z"
             ></path>
@@ -208,8 +209,11 @@ export default {
           'background-image': `url(${this.object.BackgroundFileUrl})`
       }
     },
-    logoStyle(){
-        
+    buttonStyle(){
+      return {
+        borderColor: this.object.ButtonColor,
+        color: this.object.ButtonColor
+      }
     }
   },
   created() {
