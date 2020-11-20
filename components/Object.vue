@@ -111,7 +111,7 @@ export default {
         name: '',
         link: '',
         backgroundType: 'color',
-        color: '',
+        color: '#ffffff',
         notUseLogo: false,
         buttonText1: '',
         buttonText2: ''
@@ -190,7 +190,7 @@ export default {
         Color: this.form.color,
         BackgroundFileUrl: this.backgroundFileUrl,
         NotUseLogo: this.form.notUseLogo,
-        LogoUrl: this.logoUrl,
+        LogoUrl: this.logoUrl ?? 'https://firebasestorage.googleapis.com/v0/b/zapper-mask.appspot.com/o/default.jpeg?alt=media&token=4f7b6f42-d304-4f83-b36b-23997c8eeb79',
         ButtonText1: this.form.buttonText1,
         ButtonText2: this.form.buttonText2,
         Date: new Date().toISOString().slice(0, 10)
