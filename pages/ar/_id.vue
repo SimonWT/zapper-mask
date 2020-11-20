@@ -12,9 +12,9 @@
         <div class="zee-splash-large-flex-space"></div>
         <div class="zee-logo">
           <img
-            v-if="!object.NotUseLogo"
+            v-if="!object.NotUseLogo2"
             style="width: 100%; height: 100%; position: absolute"
-            :src="object.LogoUrl"
+            :src="object.LogoUrl2"
             width="100"
             height="100"
           />
@@ -211,8 +211,8 @@ export default {
     },
     buttonStyle(){
       return {
-        borderColor: this.object.ButtonColor,
-        color: this.object.ButtonColor
+        borderColor: this.object.ButtonBorderColor,
+        background: this.object.ButtonBackColor
       }
     }
   },
