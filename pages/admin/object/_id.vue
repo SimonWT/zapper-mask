@@ -12,7 +12,7 @@ export default {
       .once('value')
       .then(function (snapshot) {
         console.log('ORDER:', snapshot.val())
-        return { key: route.params.id, ...snapshot.val() }
+        return { ...snapshot.val() }
       })
     return { editData: data }
   },

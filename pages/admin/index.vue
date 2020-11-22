@@ -3,7 +3,7 @@
     <el-table :data="filteredData" style="width: 100%">
       <el-table-column label="Date" prop="date"> </el-table-column>
       <el-table-column label="Name" prop="name"> </el-table-column>
-      <el-table-column label="ID" prop="id"> </el-table-column>
+      <el-table-column label="ID" prop="number"> </el-table-column>
       <el-table-column align="right">
         <template slot="header" slot-scope="scope">
           <el-input v-model="search" size="mini" placeholder="Type to search" />
@@ -64,12 +64,7 @@ export default {
         const list = []
         snapshot.forEach((doc) => {
           const item = {
-            key: doc.key,
-            name: doc.val().Name,
-            date: doc.val().Date,
-            id: doc.val().Number,
-            otherInfo: { ...doc.val() },
-            link: doc.val().Link,
+            ...doc.val()
           }
           list.push(item)
         })
@@ -81,7 +76,7 @@ export default {
     filteredData(){
       return this.tableData.filter(
           (data) =>
-            !this.search || data.name.toLowerCase().includes(this.search.toLowerCase()) // || data.id.toLowerCase().includes(search.toLowerCase())
+            !this.search || data.name.toLowerCase().includes(this.search.toLowerCase()) || data.number.toLowerCase().includes(search.toLowerCase())
         )
     }
   },
@@ -98,7 +93,7 @@ export default {
       this.$router.go()
     },
     goToResult(index) {
-      var win = window.open(this.tableData[index].link, '_blank')
+      var win = window.open(`/ar/${this.tableData[index].key}`, '_blank')
       win.focus()
     },
     logout() {

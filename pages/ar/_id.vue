@@ -2,30 +2,30 @@
   <div>
     <iframe
       id="MainPopupIframe"
-      :src="object.SourceLink"
+      :src="object.sourceLink"
       allow="camera;microphone"
       class="iframe-window"
     >
     </iframe>
     <div id="secondMask">
-      <div id="zee-splash" :style="backgroundStyle">
+      <div id="zee-splash" :style="backgroundStyle2">
         <div class="zee-splash-large-flex-space"></div>
         <div class="zee-logo">
           <img
-            v-if="!object.NotUseLogo2"
+            v-if="!object.mask2.notUseLogo"
             style="width: 100%; height: 100%; position: absolute"
-            :src="object.LogoUrl2"
+            :src="object.mask2.logoUrl"
             width="100"
             height="100"
           />
         </div>
         <div class="zee-splash-small-flex-space"></div>
         <div id="lunch">
-          <button id="zee-launch-button" :style="buttonStyle">
-            <span id="zee-launch-button-text" :style="{ color: object.ButtonColor }">{{ object.ButtonText2 }}</span
+          <button id="zee-launch-button" :style="buttonStyle2">
+            <span id="zee-launch-button-text" :style="{ color: object.mask2.buttonColor }">{{ object.mask2.buttonText }}</span
             ><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 11 12">
               <path
-                :fill="object.ButtonColor"
+                :fill="object.mask2.buttonColor"
                 fill-rule="evenodd"
                 d="M.166 0L10.56 6 .166 12z"
               ></path>
@@ -101,20 +101,20 @@
         <div class="zee-splash-large-flex-space"></div>
         <div class="zee-logo">
           <img
-            v-if="!object.NotUseLogo"
+            v-if="!object.mask1.notUseLogo"
             style="width: 100%; height: 100%; position: absolute"
-            :src="object.LogoUrl"
+            :src="object.mask1.logoUrl"
             width="100"
             height="100"
           />
         </div>
         <div class="zee-splash-small-flex-space"></div>
         <button id="zee-launch-button" :style="buttonStyle">
-          <span id="zee-launch-button-text" :style="{ color: object.ButtonColor }">{{ object.ButtonText1 }}</span
+          <span id="zee-launch-button-text" :style="{ color: object.mask1.buttonColor }">{{ object.mask1.buttonText }}</span
           >
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 11 12">
             <path
-              :fill="object.ButtonColor"
+              :fill="object.mask1.buttonColor"
               fill-rule="evenodd"
               d="M.166 0L10.56 6 .166 12z"
             ></path>
@@ -195,24 +195,39 @@ export default {
       .once('value')
       .then(function (snapshot) {
         console.log('ORDER:', snapshot.val())
-        return { key: route.params.id, ...snapshot.val() }
+        return { ...snapshot.val() }
       })
     return { object: data }
   },
   computed: {
     backgroundStyle() {
-      if (this.object.BackgroundType === 'color') {
+      if (this.object.mask1.backgroundType === 'color') {
         return {
-          'background-color': this.object.Color,
+          'background-color': this.object.mask1.color,
         }
       } else return {
-          'background-image': `url(${this.object.BackgroundFileUrl})`
+          'background-image': `url(${this.object.mask1.backgroundFileUrl})`
+      }
+    },
+    backgroundStyle2() {
+      if (this.object.mask2.backgroundType === 'color') {
+        return {
+          'background-color': this.object.mask2.color,
+        }
+      } else return {
+          'background-image': `url(${this.object.mask2.backgroundFileUrl})`
       }
     },
     buttonStyle(){
       return {
-        borderColor: this.object.ButtonBorderColor,
-        background: this.object.ButtonBackColor
+        borderColor: this.object.mask1.buttonBorderColor,
+        background: this.object.mask1.buttonBackColor
+      }
+    },
+    buttonStyle2(){
+      return {
+        borderColor: this.object.mask2.buttonBorderColor,
+        background: this.object.mask2.buttonBackColor
       }
     }
   },
