@@ -17,4 +17,9 @@ $ npm run start
 $ npm run generate
 ```
 
+# Production 
+$ chmod +x init-letsencrypt.sh
+$ sudo ./init-letsencrypt.sh
+$ docker-compose up -d
+
 For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).
