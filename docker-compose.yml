@@ -11,6 +11,7 @@ services:
 
   nginx:
     image: nginx:1.17
+    container_name: nginx_1
     ports:
       - '80:80'
       - '443:443'
