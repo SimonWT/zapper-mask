@@ -1,0 +1,23 @@
+version: "3"
+
+services:
+  nuxt:
+    build: ./
+    container_name: nuxt
+    restart: always
+    ports:
+     - "3000:3000"
+    command:
+     "npm run start"
+   
+  nginx:
+    image: nginx:1.17
+    container_name: ngx
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx:/etc/nginx/conf.d
+      - ./nginx/ssl:/etc/ssl
+    depends_on:
+      - nuxt
