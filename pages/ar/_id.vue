@@ -3,7 +3,7 @@
     <iframe
       id="MainPopupIframe"
       :src="object.sourceLink"
-      allow="camera;microphone"
+      allow="camera *; microphone *"
       class="iframe-window"
     >
     </iframe>
