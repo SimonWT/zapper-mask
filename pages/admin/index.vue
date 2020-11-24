@@ -30,15 +30,24 @@
           />
         </template>
         <template slot-scope="scope">
-          <i class="el-icon-view" style="font-size: 18px; cursor: pointer;" @click="goToResult(scope.$index)" />
+          <i class="el-icon-view icon" @click="goToResult(scope.$index)" />
         </template>
       </el-table-column>
       <el-table-column align="center" width="50px">
-        <template slot="header">
+        <template slot="header"> </template>
+        <template slot-scope="scope">
+          <i class="el-icon-copy-document icon" @click="copyLink(scope.$index)" />
         </template>
+      </el-table-column>
+      <el-table-column align="center" width="50px">
+        <template slot="header"> </template>
         <template slot-scope="scope">
           <a :href="`/qr/${tableData[scope.$index].key}`" target="_blank">
-           <img src="@/assets/img/icons8-qr-code.png" style="width: 22px; height: 22px; cursor: pointer;" alt="">
+            <img
+              src="@/assets/img/icons8-qr-code.png"
+              style="width: 22px; height: 22px; cursor: pointer"
+              alt=""
+            />
           </a>
         </template>
       </el-table-column>
@@ -64,7 +73,7 @@ export default {
         const list = []
         snapshot.forEach((doc) => {
           const item = {
-            ...doc.val()
+            ...doc.val(),
           }
           list.push(item)
         })
@@ -73,12 +82,14 @@ export default {
     return { tableData: data }
   },
   computed: {
-    filteredData(){
+    filteredData() {
       return this.tableData.filter(
-          (data) =>
-            !this.search || data.name.toLowerCase().includes(this.search.toLowerCase()) || data.number.toLowerCase().includes(search.toLowerCase())
-        )
-    }
+        (data) =>
+          !this.search ||
+          data.name.toLowerCase().includes(this.search.toLowerCase()) ||
+          data.number.toLowerCase().includes(search.toLowerCase())
+      )
+    },
   },
   methods: {
     handleEdit(index, row) {
@@ -100,6 +111,17 @@ export default {
       this.$store.dispatch('logout')
       this.$router.push('/admin/login')
     },
+    async copyLink(index) {
+      const text = `${process.env.baseUrl}/ar/${this.tableData[index].key}`
+      try {
+        await this.$copyText(text)
+        this.$notify({ title: 'Success',
+          message: 'Ссылка скопирована в буфер обмена',
+          type: 'success'})
+      } catch (e) {
+        console.error(e)
+      }
+    },
   },
 }
 </script>
@@ -107,5 +129,9 @@ export default {
 <style lang="scss">
 .admin-page {
   margin-top: 10vh;
+}
+.icon {
+  font-size: 18px;
+  cursor: pointer;
 }
 </style>

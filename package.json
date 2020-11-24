@@ -17,6 +17,7 @@
     "element-ui": "^2.13.2",
     "firebase": "^8.0.2",
     "nuxt": "^2.14.6",
+    "nuxt-clipboard2": "^0.2.1",
     "vue-qr": "^2.3.0"
   },
   "devDependencies": {

@@ -32,6 +32,7 @@ export default {
     '@nuxtjs/axios',
     // https://go.nuxtjs.dev/content
     '@nuxt/content',
+    'nuxt-clipboard2',
     ['cookie-universal-nuxt', { alias: 'cookiz' }],
     [
       '@nuxtjs/firebase',
