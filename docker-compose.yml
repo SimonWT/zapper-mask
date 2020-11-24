@@ -8,6 +8,10 @@ services:
     ports:
       - '3000:3000'
     command: 'npm run start'
+    environment: 
+      - BASE_URL=https://arwow.ru
+      - NODE_ENV=production
+      - HOST=0.0.0.0
 
   nginx:
     image: nginx:1.17
