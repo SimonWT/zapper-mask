@@ -8,7 +8,7 @@
 export default {
     computed: {
         link(){
-            return process.env.BASE_URL + '/ar/' + this.$route.params.id
+            return process.env.baseUrl + '/ar/' + this.$route.params.id
         }
     }
 }

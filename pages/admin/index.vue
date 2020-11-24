@@ -112,7 +112,7 @@ export default {
       this.$router.push('/admin/login')
     },
     async copyLink(index) {
-      const text = `${process.env.BASE_URL}/ar/${this.tableData[index].key}`
+      const text = `${process.env.baseUrl}/ar/${this.tableData[index].key}`
       try {
         await this.$copyText(text)
         this.$notify({ title: 'Success',
