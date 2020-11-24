@@ -87,7 +87,7 @@ export default {
         (data) =>
           !this.search ||
           data.name.toLowerCase().includes(this.search.toLowerCase()) ||
-          data.number.toLowerCase().includes(search.toLowerCase())
+          data.number.toString().toLowerCase().includes(search.toLowerCase())
       )
     },
   },
@@ -112,7 +112,7 @@ export default {
       this.$router.push('/admin/login')
     },
     async copyLink(index) {
-      const text = `${process.env.baseUrl}/ar/${this.tableData[index].key}`
+      const text = `${process.env.BASE_URL}/ar/${this.tableData[index].key}`
       try {
         await this.$copyText(text)
         this.$notify({ title: 'Success',

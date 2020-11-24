@@ -304,7 +304,7 @@ export default {
       return false
     },
     generateLinkWithQR() {
-      this.form.generatedLink = `${process.env.baseUrl}/ar/${this.form.key}`
+      this.form.generatedLink = `${process.env.BASE_URL}/ar/${this.form.key}`
       this.generatedQr = true
     },
     async createNewObject() {
